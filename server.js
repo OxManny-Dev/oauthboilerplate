@@ -5,7 +5,9 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const app = express();
 
+const path = require('path');
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/myapp");
+
 
 
 const db = require('./models');
@@ -16,6 +18,7 @@ require('./services/passport');
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
+app.use(express.static('client/build'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -29,6 +32,11 @@ app.use(
 // once these functions run, our User model instance will be added to req.user
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('/', (req, res ) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+})
+
 
 require('./routes/authRoutes')(app);
 
