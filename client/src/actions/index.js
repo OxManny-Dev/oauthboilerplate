@@ -1,4 +1,4 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER, FETCH_USER } from './types';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER, FETCH_USER, FETCH_TODO, ADD_TODO } from './types';
 import axios from  'axios';
 
 export const incrementCounter = () => {
@@ -14,3 +14,12 @@ export const fetchUser = () =>  async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data});
 }
 
+export const fetchTodos = () => async dispatch => {
+    const res = await axios.get('/api/todos');
+    dispatch({type: FETCH_TODO, payload: res.data});
+}
+
+export const handleTodoSubmit = todo => async dispatch => {
+    const res = await axios.post('/api/todos', {todo});
+    dispatch({type: ADD_TODO, payload: res.data});
+}

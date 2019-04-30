@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { incrementCounter, decrementCounter, fetchUser } from './actions';
+import { incrementCounter, decrementCounter, fetchUser, fetchTodos } from './actions';
 
 
-import Random from './components/someRandomComponent';
+import Todo from './components/Todo';
 
 class App extends Component {
 
@@ -16,7 +16,7 @@ class App extends Component {
 
   renderStuff() {
     if(this.props.auth) {
-      return <Random/>;
+      return <Todo/>;
     } else {
       return <h1> You are not logged in</h1>;
     }
@@ -41,4 +41,4 @@ function mapStateToProps({counter, auth}){
   return { counter, auth };
 }
 
-export default connect(mapStateToProps, { incrementCounter, decrementCounter, fetchUser })(App);
+export default connect(mapStateToProps, { incrementCounter, decrementCounter, fetchUser, fetchTodos })(App);

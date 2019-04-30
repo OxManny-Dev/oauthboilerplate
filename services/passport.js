@@ -14,7 +14,7 @@ passport.serializeUser( (user, done) => {
 
 // takes the id that we stuffed in the cookie from serialize and turn it back into a user model
 passport.deserializeUser( async (id, done) => {
-  const user = await db.User.findById(id);
+  const user = await db.User.findById(id).populate('todos');
   done(null, user);
 });
 

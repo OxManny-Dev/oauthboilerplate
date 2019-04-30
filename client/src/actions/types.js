@@ -1,3 +1,5 @@
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 export const FETCH_USER = 'FETCH_USER';
+export const FETCH_TODO = 'FETCH_TODO';
+export const ADD_TODO = 'ADD_TODO';
