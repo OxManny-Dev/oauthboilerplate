@@ -11,7 +11,7 @@ router.get('/currentUser', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('http://localhost:3000');
 });
 
 module.exports = router;
